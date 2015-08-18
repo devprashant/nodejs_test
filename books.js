@@ -1,8 +1,11 @@
-var ratePoints = 0;
-exports.rate = function(points){
-    ratePoints = points;
-}
-
-exports.getPoints = function(){
-    return ratePoints;
+module.exports = function() {
+    var ratePoints = 0;
+    return {
+        rate: function(points) {
+            ratePoints = points;
+        },
+        getPoints: function(){
+            return ratePoints;
+        }
+    }
 }
