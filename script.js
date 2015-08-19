@@ -10,6 +10,12 @@ http.createServer(function (req, res){
    } else if (req.url === 'web/style.css'){
        content = fs.readFileSync('web/style.css');
        type = "text/css";
+   } else if (req.url === 'api/user/new'){
+       // Do actions like
+       // reading POST parameters
+       // storing the user into the database
+       content = '{"sucess" : true}';
+       type = 'application/json';
    }
    res.writeHead(200, { 'Content-Type' : type});
    res.end(content + '\n');
