@@ -13,6 +13,6 @@ http.createServer(function (req, res){
    }
    res.writeHead(200, { 'Content-Type' : type});
    res.end(content + '\n');
-}).listen(1337, 'https://nodejst-prashantdawar.c9.io');
+}).listen(process.env.PORT, process.env.IP);
 
-console.log('Server running at http://127.0.0.1:1337/');
+console.log('Server running at ' + process.env.IP + ":" + process.env.PORT);
