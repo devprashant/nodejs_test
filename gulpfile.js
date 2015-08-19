@@ -12,6 +12,7 @@ gulp.task('js', function(){
     .pipe(gulp.dest('/build/'))
 });
 
+
 gulp.task('watchers', function() {
     gulp.watch('src/**/*.js',['js']);
 });
