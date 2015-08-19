@@ -1,9 +1,9 @@
-var fs = require("fs");
-fs.writeFile('data.txt','Hello world!', function (err){
-    if (err) { throw err; }
-    console.log('It is saved!');
-});
-fs.readFile('data.txt', function(err, data){
-    if (err) throw err;
-    console.log(data.toString());
-});
+//working with events
+var events = require("events");
+var eventEmitter = new events.EventEmitter();
+var somethingHappen = function() {
+    console.log('Something happen!');
+}
+eventEmitter
+.on('something-happen', somethingHappen)
+.emit('something-happen');
