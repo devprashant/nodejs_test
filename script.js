@@ -1,15 +1,7 @@
-//Managing child processes using spawn
-
-var spawn = require("child_process").spawn;
-var command = spawn('git', ['push', 'origin', 'master']);
-command.stdout.on('data', function (data){
-    console.log('stdout: ' + data);
-});
-
-command.stderr.on('data', function (data){
-    console.log('stderr: ' + data);
-});
-
-command.on('close', function (code){
-    console.log('child process exited with code ' + code) ;
-});
+//Architecting the Project
+var http = require("http");
+http.createServer(function (req, res) {
+   res.writeHead(200, { 'Content-Type' : "text/plain"}) ;
+   res.end('Hello World\n');
+}).listen(1337, '127.0.0.1');
+console.log('Server running at http://127.0.0.1:1337/');
