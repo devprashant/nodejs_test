@@ -1,39 +1,56 @@
 0 info it worked if it ends with ok
 1 verbose cli [ '/home/ubuntu/.nvm/v0.10.35/bin/node',
 1 verbose cli   '/home/ubuntu/.nvm/v0.10.35/bin/npm',
-1 verbose cli   'publish' ]
+1 verbose cli   'install',
+1 verbose cli   'mocha',
+1 verbose cli   '-a' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.35
-4 verbose publish [ '.' ]
-5 verbose cache add [ '.', null ]
-6 verbose cache add name=undefined spec="." args=[".",null]
-7 verbose parsed url { protocol: null,
-7 verbose parsed url   slashes: null,
-7 verbose parsed url   auth: null,
-7 verbose parsed url   host: null,
-7 verbose parsed url   port: null,
-7 verbose parsed url   hostname: null,
-7 verbose parsed url   hash: null,
-7 verbose parsed url   search: null,
-7 verbose parsed url   query: null,
-7 verbose parsed url   pathname: '.',
-7 verbose parsed url   path: '.',
-7 verbose parsed url   href: '.' }
-8 silly lockFile 3a52ce78- .
-9 verbose lock . /home/ubuntu/.npm/3a52ce78-.lock
-10 silly lockFile 3a52ce78- .
-11 silly lockFile 3a52ce78- .
-12 error addLocal Could not install .
-13 error Error: ENOENT, open 'package.json'
-14 error If you need help, you may report this *entire* log,
-14 error including the npm and node versions, at:
-14 error     <http://github.com/npm/npm/issues>
-15 error System Linux 3.14.13-c9
-16 error command "/home/ubuntu/.nvm/v0.10.35/bin/node" "/home/ubuntu/.nvm/v0.10.35/bin/npm" "publish"
-17 error cwd /home/ubuntu/workspace
-18 error node -v v0.10.35
-19 error npm -v 1.4.28
-20 error path package.json
-21 error code ENOENT
-22 error errno 34
-23 verbose exit [ 34, true ]
+4 warn package.json GruntjsTest@0.0.1 No repository field.
+5 verbose readDependencies using package.json deps
+6 verbose cache add [ 'mocha', null ]
+7 verbose cache add name=undefined spec="mocha" args=["mocha",null]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: 'mocha',
+8 verbose parsed url   path: 'mocha',
+8 verbose parsed url   href: 'mocha' }
+9 silly lockFile a619da43-mocha mocha
+10 verbose lock mocha /home/ubuntu/.npm/a619da43-mocha.lock
+11 silly lockFile a619da43-mocha mocha
+12 silly lockFile a619da43-mocha mocha
+13 verbose addNamed [ 'mocha', '' ]
+14 verbose addNamed [ null, '*' ]
+15 silly lockFile b9899f31-mocha mocha@
+16 verbose lock mocha@ /home/ubuntu/.npm/b9899f31-mocha.lock
+17 silly addNameRange { name: 'mocha', range: '*', hasData: false }
+18 verbose request where is /mocha
+19 verbose request registry https://registry.npmjs.org/
+20 verbose request id 779b6f010b4a87c0
+21 verbose url raw /mocha
+22 verbose url resolving [ 'https://registry.npmjs.org/', './mocha' ]
+23 verbose url resolved https://registry.npmjs.org/mocha
+24 verbose request where is https://registry.npmjs.org/mocha
+25 silly lockFile b9899f31-mocha mocha@
+26 silly lockFile b9899f31-mocha mocha@
+27 error Error: This request requires auth credentials. Run `npm login` and repeat the request.
+27 error     at RegClient.regRequest [as request] (/home/ubuntu/.nvm/v0.10.35/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:107:15)
+27 error     at RegClient.get_ (/home/ubuntu/.nvm/v0.10.35/lib/node_modules/npm/node_modules/npm-registry-client/lib/get.js:141:8)
+27 error     at RegClient.<anonymous> (/home/ubuntu/.nvm/v0.10.35/lib/node_modules/npm/node_modules/npm-registry-client/lib/get.js:52:12)
+27 error     at Object.oncomplete (evalmachine.<anonymous>:108:15)
+28 error If you need help, you may report this *entire* log,
+28 error including the npm and node versions, at:
+28 error     <http://github.com/npm/npm/issues>
+29 error System Linux 3.14.13-c9
+30 error command "/home/ubuntu/.nvm/v0.10.35/bin/node" "/home/ubuntu/.nvm/v0.10.35/bin/npm" "install" "mocha" "-a"
+31 error cwd /home/ubuntu/workspace
+32 error node -v v0.10.35
+33 error npm -v 1.4.28
+34 verbose exit [ 1, true ]
