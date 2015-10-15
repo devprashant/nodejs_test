@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1= title
+  form(id="frmScheduleProfile", method="post", action="")
+    label(for="department") Department
+    input(type="text", name="department", id="department")
+    label(for="branch") Branch
+    input(type="text", name="branch", id="branch")
+    label(for="semester") Semester
+    input(type="number", name="semester", id="semester")
+    label(for="group") Group
+    input(type="number", name="group", id="group")
+    label(for="subjectName") Subject Name
+    input(type="text", name="subjectName", id="subjectName")
+    label(for="roomNumber") Room Number
+    input(type="text", name="roomNumber", id="roomNumber")
+    label(for="day") Day
+    select(id="day", name="day")
+     
+     option(value="Monday") Monday
+     option(value="Tuesday") Tuesday
+     option(value="Wednesday") Wednesday
+     option(value="Thrusday") Thrusday
+     option(value="Friday") Friday
+     option(value="Saturday") Saturday
+    input(type="text", name="day", id="day")
+    label(for="slot") Slot
+    input(type="number", name="slot", id="slot")
+    label(for="lecturer") Lecturer
+    input(type="text", name="lecturer", id="lecturer")
+    input(type="submit", value="#{buttonText}")

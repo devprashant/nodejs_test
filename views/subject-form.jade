@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  form(id="frmSubjectProfile", method="post", action="")
+    label(for="subjectName") Subject Name
+    input(type="text", name="subjectName", id="subjectName")
+    label(for="subjectCode") Subject Code
+    input(type="text", name="subjectCode", id="subjectCode")
+    input(type="submit", value="#{buttonText}")
