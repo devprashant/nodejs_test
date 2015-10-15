@@ -33,6 +33,7 @@ exports.create = function(req, res){
         title: 'Add Schedule'
         ,buttonText: 'Thats it!'
         ,days: ['Monday', 'Tuesday','Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        ,slots: [1,2,3,4,5,6,7,8 ]
     });
 };
 

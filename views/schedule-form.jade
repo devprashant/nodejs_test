@@ -3,30 +3,54 @@ extends layout
 block content
   h1= title
   form(id="frmScheduleProfile", method="post", action="")
-    label(for="department") Department
-    input(type="text", name="department", id="department")
-    label(for="branch") Branch
-    input(type="text", name="branch", id="branch")
-    label(for="semester") Semester
-    input(type="number", name="semester", id="semester")
-    label(for="group") Group
-    input(type="number", name="group", id="group")
-    label(for="subjectName") Subject Name
-    input(type="text", name="subjectName", id="subjectName")
-    label(for="roomNumber") Room Number
-    input(type="text", name="roomNumber", id="roomNumber")
-    label(for="day") Day
-    select(id="day", name="day")
-     
-     option(value="Monday") Monday
-     option(value="Tuesday") Tuesday
-     option(value="Wednesday") Wednesday
-     option(value="Thrusday") Thrusday
-     option(value="Friday") Friday
-     option(value="Saturday") Saturday
-    input(type="text", name="day", id="day")
-    label(for="slot") Slot
-    input(type="number", name="slot", id="slot")
-    label(for="lecturer") Lecturer
-    input(type="text", name="lecturer", id="lecturer")
+    div
+      label(for="department") Department
+      select(type="text",id="department", name="department")
+        option(value="MAIT") MAIT
+    div
+      label(for="branch") Branch
+      select(type="text",id="branch", name="branch")
+        option(value="CSE") CSE
+        option(value="ECE") ECE
+        option(value="EEE") EEE
+        option(value="ME") ME
+        option(value="CE") CE
+        
+    div
+      label(for="semester") Semester
+      select(type="number",id="semester", name="semester")
+        option(value=1) ONE
+        option(value=2) TWO
+        option(value=3) THREE
+        option(value=4) FOUR
+        option(value=5) FIVE
+        
+    div
+      label(for="group") Group
+      select(type="number",id="group", name="group")
+        option(value=1) ONE
+        option(value=2) TWO
+        option(value=3) THREE
+        
+        
+    div 
+      label(for="subjectName") Subject Name
+      input(type="text", name="subjectName", id="subjectName")
+    div 
+      label(for="roomNumber") Room Number
+      input(type="text", name="roomNumber", id="roomNumber")
+    div
+      label(for="day") Day
+      select(type="text",id="day", name="day")
+         each day in days
+          option(value='#{day}')= day
+    div
+      label(for="slot") Slot
+      select(type="number",id="slot", name="slot")
+         each slot in [1,2,3,4,5,6,7,8]
+          option(value='#{slot}')= slot
+        
+    div
+      label(for="lecturer") Lecturer
+      input(type="text", name="lecturer", id="lecturer")
     input(type="submit", value="#{buttonText}")
