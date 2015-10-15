@@ -20,9 +20,9 @@ block content
       label(for="semester") Semester
       select(type="number",id="semester", name="semester")
         option(value=1) ONE
-        option(value=2) TWO
+        //option(value=2) TWO
         option(value=3) THREE
-        option(value=4) FOUR
+        //option(value=4) FOUR
         option(value=5) FIVE
         
     div
@@ -35,7 +35,9 @@ block content
         
     div 
       label(for="subjectName") Subject Name
-      input(type="text", name="subjectName", id="subjectName")
+      select(type="text",id="subjectName", name="subjectName")
+         each subject in subjects
+          option(value='#{subject.subject_name}')= subject.subject_name
     div 
       label(for="roomNumber") Room Number
       input(type="text", name="roomNumber", id="roomNumber")
@@ -50,7 +52,4 @@ block content
          each slot in [1,2,3,4,5,6,7,8]
           option(value='#{slot}')= slot
         
-    div
-      label(for="lecturer") Lecturer
-      input(type="text", name="lecturer", id="lecturer")
-    input(type="submit", value="#{buttonText}")
+        input(type="submit", value="#{buttonText}")

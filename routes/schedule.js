@@ -1,5 +1,8 @@
 var mongoose = require("mongoose");
 var Schedule = mongoose.model("Schedule");
+var Subject = mongoose.model("Subject");
+
+
 
 exports.doCreate= function(req, res){
     Schedule.create({
@@ -29,12 +32,23 @@ exports.doCreate= function(req, res){
 };
 
 exports.create = function(req, res){
-    res.render('schedule-form', {
-        title: 'Add Schedule'
-        ,buttonText: 'Thats it!'
-        ,days: ['Monday', 'Tuesday','Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-        ,slots: [1,2,3,4,5,6,7,8 ]
+    Subject.find(
+    {}
+    ,'_id subject_name subject_code'
+    ,function(err, allSubjects){
+        if (!err){
+          //console.log('All subjects:' + allSubjects);
+          res.render('schedule-form', {
+             title: 'Add Schedule'
+             ,buttonText: 'Thats it!'
+             ,days: ['Monday', 'Tuesday','Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+             ,subjects: allSubjects
+          });
+        } else {
+          res.redirect('/subject/all?404=error');
+        }
     });
+    
 };
 
 exports.doList= function(req, res){

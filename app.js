@@ -4,6 +4,7 @@ var express = require('express')
   , user = require('./routes/user')
   , schedule = require('./routes/schedule')
   , subject = require('./routes/subject')
+ // , lecturer = require('./routes/lecturer')
   , http = require('http')
   , path = require('path');
 
@@ -40,15 +41,21 @@ app.get('/logout', user.doLogout);          // Logout current user
 app.get('/login', user.login);          // Edit current user form
 app.post('/login', user.doLogin);       // Edit current user action
 
-app.get('/now', schedule.serve);
+
+//Subject
 app.get('/subject/new', subject.create);
 app.post('/subject/new', subject.doCreate);
 app.get('/subject/all', subject.doList);
 
+//Schedule
 app.get('/schedule/new', schedule.create);
 app.post('/schedule/new', schedule.doCreate);
-app.get('/schedule/all', schedule.doList);''
+app.get('/schedule/all', schedule.doList);
 
+// Lecturer
+/*app.get('/lecturer/new', lecturer.create);
+app.post('/lecturer/new', lecturer.doCreate);
+app.get('/lecturer/all', lecturer.doList);*/
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

@@ -63,14 +63,16 @@ mongoose.model('Subject', SubjectSchema);
 **************************************************************************/
 
 var UserSchema = new mongoose.Schema({
-   email: String,
-   name: String,
-   semester: Number,
-   branch: String,
-   group: String,
-   roll_no: String,
-   gcm_id: String,
-   department: String
+   email: String
+   ,name: String
+   ,semester: Number
+   ,branch: String
+   ,group: String
+   ,roll_no: String
+   ,gcm_id: String
+   ,department: String
 });
 
 mongoose.model('User', UserSchema);
+
+
