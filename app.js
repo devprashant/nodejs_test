@@ -58,6 +58,6 @@ app.get('/schedule/all', schedule.doList);
 app.post('/lecturer/new', lecturer.doCreate);
 app.get('/lecturer/all', lecturer.doList);*/
 
-http.createServer(app).listen(app.get("port"),app.get("ip"), function(){
+http.createServer(app).listen(app.get('port'),app.get('ip), function(){
   console.log("Express server listening on  " + app.get('ip') + " : " +  app.get('port'));
 });
