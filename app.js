@@ -52,6 +52,7 @@ app.get('/subject/all', subject.doList);
 app.get('/schedule/new', schedule.create);
 app.post('/schedule/new', schedule.doCreate);
 app.get('/schedule/all', schedule.doList);
+app.get('/schedule/today',schedule.doListToday);
 
 // Lecturer
 /*app.get('/lecturer/new', lecturer.create);
