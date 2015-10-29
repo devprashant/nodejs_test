@@ -1,6 +1,8 @@
 var mongoose = require("mongoose");
 var Schedule = mongoose.model("Schedule");
 var Subject = mongoose.model("Subject");
+var url = require("url"); 
+
 
 //Convert time to Indian Standard Time
 var IST = new Date(); // Clone UTC Timestamp
@@ -19,11 +21,14 @@ if (IST.getHours() > 16 ) {
 
 if (day == 0) day = 1;
 
-var dayToday = "Monday";
+
 console.log("day now for data processing:", day);
 console.log("IST Time:", IST.getDay() + " " + IST.getHours() + " " + IST.getMinutes());
 console.log("server time: ", (new Date()).getDay() + " " + (new Date()).getHours() + " " + (new Date()).getMinutes());
-switch(day){
+function getToday(day){
+    var dayToday = "Monday";
+    
+    switch(day){
     case 1:
         dayToday = "Monday";
         break;
@@ -48,6 +53,8 @@ switch(day){
     default:
         //readFile(path.normalize(__dirname + '/cse/exam.json'));
         break;
+    }
+    return dayToday;
 }
 
 
@@ -117,7 +124,75 @@ exports.doList= function(req, res){
 
 exports.doListToday =function (req, res){
    Schedule.find(
-    {day: dayToday}
+    {day: getToday(day)}
+    ,function(err, todaySchedule){
+        if (!err){
+          console.log('Today\'s Schedule' + todaySchedule);
+          //return res.end(JSON.stringify(subjects));
+          res.send(JSON.parse(JSON.stringify(todaySchedule)));
+        } else {
+          res.redirect('/schedule/today?404=error');
+        }
+    });
+};
+
+exports.doListTodayByName = function (req, res){
+   
+   Schedule.find(
+    { day: getToday(day)
+      ,lecturer: req.query.lecturer  
+    }
+    ,function(err, todaySchedule){
+        if (!err){
+          console.log('Today\'s Schedule' + todaySchedule);
+          //return res.end(JSON.stringify(subjects));
+          res.send(JSON.parse(JSON.stringify(todaySchedule)));
+        } else {
+          res.redirect('/schedule/today?404=error');
+        }
+    });
+};
+
+exports.doListNextByName = function (req, res){
+    
+   Schedule.find(
+    { day: getToday(day + 1)
+      ,lecturer: req.query.lecturer  
+    }
+    ,function(err, todaySchedule){
+        if (!err){
+          console.log('Next day\'s Schedule' + todaySchedule);
+          //return res.end(JSON.stringify(subjects));
+          res.send(JSON.parse(JSON.stringify(todaySchedule)));
+        } else {
+          res.redirect('/schedule/nextday?404=error');
+        }
+    });
+};
+
+exports.doListLaterByName = function (req, res){
+    
+   Schedule.find(
+    { day: getToday(day + 2) 
+      ,lecturer: req.query.lecturer  
+    }
+    ,function(err, todaySchedule){
+        if (!err){
+          console.log('Later day\'s Schedule' + todaySchedule);
+          //return res.end(JSON.stringify(subjects));
+          res.send(JSON.parse(JSON.stringify(todaySchedule)));
+        } else {
+          res.redirect('/schedule/later?404=error');
+        }
+    });
+};
+
+
+exports.doListTodayByRoom = function (req, res){
+   Schedule.find(
+    { day: getToday(day)
+      ,room_no: req.body.room_no 
+    }
     ,function(err, todaySchedule){
         if (!err){
           console.log('Today\'s Schedule' + todaySchedule);

@@ -5,6 +5,7 @@ var express = require('express')
   , schedule = require('./routes/schedule')
   , subject = require('./routes/subject')
  // , lecturer = require('./routes/lecturer')
+   
   , http = require('http')
   , path = require('path');
 
@@ -52,7 +53,11 @@ app.get('/subject/all', subject.doList);
 app.get('/schedule/new', schedule.create);
 app.post('/schedule/new', schedule.doCreate);
 app.get('/schedule/all', schedule.doList);
-app.get('/schedule/today',schedule.doListToday);
+app.get('/schedule/me',schedule.doListToday);
+app.get('/schedule/today', schedule.doListTodayByName);
+app.get('/schedule/nextday', schedule.doListNextByName);
+app.get('/schedule/laterday', schedule.doListLaterByName);
+app.get('/schedule/room', schedule.doListTodayByRoom);
 
 // Lecturer
 /*app.get('/lecturer/new', lecturer.create);
