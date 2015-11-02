@@ -57,7 +57,11 @@ function getToday(day){
     return dayToday;
 }
 
-
+function serveSchedule(Schedule, typeofSchedule,res){
+    console.log(typeofSchedule + " " + Schedule);
+          //return res.end(JSON.stringify(subjects));
+          res.send(JSON.parse(JSON.stringify(Schedule)));
+}
 
 exports.doCreate= function(req, res){
     Schedule.create({
@@ -113,9 +117,7 @@ exports.doList= function(req, res){
     {}
     ,function(err, fullSchedule){
         if (!err){
-          console.log('Full Schedule' + fullSchedule);
-          //return res.end(JSON.stringify(subjects));
-          res.send(JSON.parse(JSON.stringify(fullSchedule)));
+          serveSchedule(fullSchedule, "Full Schedule", res);
         } else {
           res.redirect('/schedule/all?404=error');
         }
@@ -127,11 +129,9 @@ exports.doListToday =function (req, res){
     {day: getToday(day)}
     ,function(err, todaySchedule){
         if (!err){
-          console.log('Today\'s Schedule' + todaySchedule);
-          //return res.end(JSON.stringify(subjects));
-          res.send(JSON.parse(JSON.stringify(todaySchedule)));
+          serveSchedule(todaySchedule, "Today\'s Schedule", res);
         } else {
-          res.redirect('/schedule/today?404=error');
+          res.redirect('/schedule/me?404=error');
         }
     });
 };
@@ -144,9 +144,7 @@ exports.doListTodayByName = function (req, res){
     }
     ,function(err, todaySchedule){
         if (!err){
-          console.log('Today\'s Schedule' + todaySchedule);
-          //return res.end(JSON.stringify(subjects));
-          res.send(JSON.parse(JSON.stringify(todaySchedule)));
+          serveSchedule(todaySchedule, "Today\'s  Schedule", res);
         } else {
           res.redirect('/schedule/today?404=error');
         }
@@ -159,11 +157,9 @@ exports.doListNextByName = function (req, res){
     { day: getToday(day + 1)
       ,lecturer: req.query.lecturer  
     }
-    ,function(err, todaySchedule){
+    ,function(err, nextDaySchedule){
         if (!err){
-          console.log('Next day\'s Schedule' + todaySchedule);
-          //return res.end(JSON.stringify(subjects));
-          res.send(JSON.parse(JSON.stringify(todaySchedule)));
+          serveSchedule(nextDaySchedule, "Next day\'s Schedule", res);
         } else {
           res.redirect('/schedule/nextday?404=error');
         }
@@ -176,11 +172,9 @@ exports.doListLaterByName = function (req, res){
     { day: getToday(day + 2) 
       ,lecturer: req.query.lecturer  
     }
-    ,function(err, todaySchedule){
+    ,function(err, laterDaySchedule){
         if (!err){
-          console.log('Later day\'s Schedule' + todaySchedule);
-          //return res.end(JSON.stringify(subjects));
-          res.send(JSON.parse(JSON.stringify(todaySchedule)));
+          serveSchedule(laterDaySchedule, "Later Day\'s Schedule", res);
         } else {
           res.redirect('/schedule/later?404=error');
         }
@@ -193,11 +187,9 @@ exports.doListTodayByRoom = function (req, res){
     { day: getToday(day)
       ,room_no: req.body.room_no 
     }
-    ,function(err, todaySchedule){
+    ,function(err, todayScheduleByRoom){
         if (!err){
-          console.log('Today\'s Schedule' + todaySchedule);
-          //return res.end(JSON.stringify(subjects));
-          res.send(JSON.parse(JSON.stringify(todaySchedule)));
+          serveSchedule(todayScheduleByRoom, "Today\'s  Schedule", res);
         } else {
           res.redirect('/schedule/today?404=error');
         }
