@@ -58,6 +58,7 @@ app.get('/schedule/today', schedule.doListTodayByName);
 app.get('/schedule/nextday', schedule.doListNextByName);
 app.get('/schedule/laterday', schedule.doListLaterByName);
 app.get('/schedule/room', schedule.doListTodayByRoom);
+app.get('/schedule/class', schedule.doListTodayByClass);
 
 // Lecturer
 /*app.get('/lecturer/new', lecturer.create);

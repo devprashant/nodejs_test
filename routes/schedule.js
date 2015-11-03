@@ -1,9 +1,8 @@
 var mongoose = require("mongoose");
 var Schedule = mongoose.model("Schedule");
 var Subject = mongoose.model("Subject");
-var url = require("url"); 
 
-
+function getDayToday(){
 //Convert time to Indian Standard Time
 var IST = new Date(); // Clone UTC Timestamp
 IST.setHours(IST.getHours() + 5); // set Hours to 5 hours later
@@ -25,7 +24,9 @@ if (day == 0) day = 1;
 console.log("day now for data processing:", day);
 console.log("IST Time:", IST.getDay() + " " + IST.getHours() + " " + IST.getMinutes());
 console.log("server time: ", (new Date()).getDay() + " " + (new Date()).getHours() + " " + (new Date()).getMinutes());
-function getToday(day){
+return day;
+}
+function getTodayName(day){
     var dayToday = "Monday";
     
     switch(day){
@@ -126,7 +127,7 @@ exports.doList= function(req, res){
 
 exports.doListToday =function (req, res){
    Schedule.find(
-    {day: getToday(day)}
+    {day: getTodayName(getDayToday())}
     ,function(err, todaySchedule){
         if (!err){
           serveSchedule(todaySchedule, "Today\'s Schedule", res);
@@ -139,7 +140,7 @@ exports.doListToday =function (req, res){
 exports.doListTodayByName = function (req, res){
    
    Schedule.find(
-    { day: getToday(day)
+    { day: getTodayName(getDayToday())
       ,lecturer: req.query.lecturer  
     }
     ,function(err, todaySchedule){
@@ -154,7 +155,7 @@ exports.doListTodayByName = function (req, res){
 exports.doListNextByName = function (req, res){
     
    Schedule.find(
-    { day: getToday(day + 1)
+    { day: getTodayName(getDayToday() + 1)
       ,lecturer: req.query.lecturer  
     }
     ,function(err, nextDaySchedule){
@@ -169,7 +170,7 @@ exports.doListNextByName = function (req, res){
 exports.doListLaterByName = function (req, res){
     
    Schedule.find(
-    { day: getToday(day + 2) 
+    { day: getTodayName(getDayToday() + 2) 
       ,lecturer: req.query.lecturer  
     }
     ,function(err, laterDaySchedule){
@@ -184,12 +185,44 @@ exports.doListLaterByName = function (req, res){
 
 exports.doListTodayByRoom = function (req, res){
    Schedule.find(
-    { day: getToday(day)
-      ,room_no: req.body.room_no 
+    { day: getTodayName(getDayToday())
+      ,room_no: req.query.room_no 
     }
     ,function(err, todayScheduleByRoom){
         if (!err){
-          serveSchedule(todayScheduleByRoom, "Today\'s  Schedule", res);
+          serveSchedule(todayScheduleByRoom, "Today\'s  Schedule by room", res);
+        } else {
+          res.redirect('/schedule/today?404=error');
+        }
+    });
+};
+
+exports.doListTodayByClass = function (req, res){
+   Schedule.find(
+    { day: getTodayName(getDayToday())
+      ,semester: req.query.semester
+      ,branch: req.query.branch
+      ,group: req.query.group
+    }
+    ,function(err, todayScheduleByClass){
+        if (!err){
+          serveSchedule(todayScheduleByClass, "Today\'s  Schedule by class", res);
+        } else {
+          res.redirect('/schedule/today?404=error');
+        }
+    });
+};
+
+exports.doListTodayByExamType = function (req, res){
+   Schedule.find(
+    { day: getTodayName(getDayToday())
+      ,semester: req.query.semester
+      ,branch: req.query.branch
+      ,class_type: req.query.class_type
+    }
+    ,function(err, todayScheduleByExamType){
+        if (!err){
+          serveSchedule(todayScheduleByExamType, "Today\'s  Schedule by class", res);
         } else {
           res.redirect('/schedule/today?404=error');
         }
