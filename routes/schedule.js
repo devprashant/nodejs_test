@@ -2,9 +2,18 @@ var mongoose = require("mongoose");
 var Schedule = mongoose.model("Schedule");
 var Subject = mongoose.model("Subject");
 
+function getCurrentTimeUTC()
+{
+    //RETURN:
+    //      = number of milliseconds between current UTC time and midnight of January 1, 1970
+    var tmLoc = new Date();
+    //The offset is in minutes -- convert it to ms
+    return tmLoc.getTime() + tmLoc.getTimezoneOffset() * 60000;
+}
+
 function getDayToday(){
 //Convert time to Indian Standard Time
-var IST = new Date(); // Clone UTC Timestamp
+var IST = new Date(getCurrentTimeUTC()); // Clone UTC Timestamp
 IST.setHours(IST.getHours() + 5); // set Hours to 5 hours later
 IST.setMinutes(IST.getMinutes() + 30); // set Minutes to be 30 minutes later
 
@@ -19,7 +28,6 @@ if (IST.getHours() > 16 ) {
 }
 
 if (day == 0) day = 1;
-
 
 console.log("day now for data processing:", day);
 console.log("IST Time:", IST.getDay() + " " + IST.getHours() + " " + IST.getMinutes());
