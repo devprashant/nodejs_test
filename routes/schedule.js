@@ -2,8 +2,7 @@ var mongoose = require("mongoose");
 var Schedule = mongoose.model("Schedule");
 var Subject = mongoose.model("Subject");
 
-function getCurrentTimeUTC()
-{
+function getCurrentTimeUTC(){
     //RETURN:
     //      = number of milliseconds between current UTC time and midnight of January 1, 1970
     var tmLoc = new Date();
