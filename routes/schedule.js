@@ -78,6 +78,7 @@ exports.doCreate= function(req, res){
         ,semester: req.body.semester
         ,group: req.body.group
         ,subject_name: req.body.subjectName
+        ,class_type: req.body.classType
         ,room_no: req.body.roomNumber
         ,lecturer: req.body.lecturer
         ,day: req.body.day
