@@ -34,6 +34,7 @@ var ScheduleSchema = new mongoose.Schema({
    ,semester: Number
    ,group: Number
    ,subject_name: String
+   ,class_type: String
    ,room_no: String
    ,lecturer: String
    ,day: String

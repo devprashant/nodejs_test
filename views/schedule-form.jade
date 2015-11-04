@@ -40,6 +40,17 @@ block content
       select(type="text",id="subjectName", name="subjectName")
          each subject in subjects
           option(value='#{subject.subject_name}')= subject.subject_name
+          
+    div 
+      label(for="classType") Class Type
+      select(type="text",id="classType", name="classType")
+        option(value="lecture") Lecture
+        option(value="labs") Lab
+        option(value="practical") Practical
+        option(value="exam") Exam
+        
+      
+          
     div 
       label(for="roomNumber") Room Number
       input(type="text", name="roomNumber", id="roomNumber")

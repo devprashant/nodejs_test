@@ -193,7 +193,7 @@ exports.doListLaterByName = function (req, res){
 exports.doListTodayByRoom = function (req, res){
    Schedule.find(
     { day: getTodayName(getDayToday())
-      ,room_no: req.query.room_no 
+      ,room_no: req.query.roomNumber
     }
     ,function(err, todayScheduleByRoom){
         if (!err){
@@ -225,7 +225,7 @@ exports.doListTodayByExamType = function (req, res){
     { day: getTodayName(getDayToday())
       ,semester: req.query.semester
       ,branch: req.query.branch
-      ,class_type: req.query.class_type
+      ,class_type: req.query.classType
     }
     ,function(err, todayScheduleByExamType){
         if (!err){
