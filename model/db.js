@@ -54,7 +54,6 @@ var SubjectSchema = new mongoose.Schema({
       ,subject_code: { type:String, unique: true }
       ,created_on: { type: Date, default: Date.now }
       ,modified_on: Date
-      
 });
 
 mongoose.model('Subject', SubjectSchema);

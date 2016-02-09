@@ -83,7 +83,6 @@ exports.doCreate= function(req, res){
         ,lecturer: req.body.lecturer
         ,day: req.body.day
         ,slot: req.body.slot
-        ,lecturer: req.body.lecturer
         ,modified_on: Date.now()
     }, function(err, schedule){
         if (err){
